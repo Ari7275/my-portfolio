@@ -13,7 +13,6 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
-
   }
 }
 
@@ -41,7 +40,7 @@ body {
 }
 
 /* SideButtons */
-.side-buttons{
+.side-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +50,7 @@ body {
   margin: 1.5rem;
 }
 
-.side-buttons a{
+.side-buttons a {
   color: #453bcd;
   font-size: 2rem;
   padding: 0;
@@ -60,12 +59,11 @@ body {
   transition: 0.3s ease-in-out all;
 }
 
-.side-buttons a:hover{
+.side-buttons a:hover {
   transform: rotate(360deg);
 }
 
-
-.side-buttons dialog{
+.side-buttons dialog {
   position: absolute;
   inset: 0;
   margin: auto;
@@ -75,7 +73,9 @@ body {
   outline: none;
   padding: 1rem;
 }
+
 /* ---------- CONTACT ME --------- */
+
 #contactme {
   margin-inline: auto;
   min-height: 100dvh;
@@ -87,19 +87,22 @@ body {
   justify-content: center;
 }
 
-#contactme h1{
+#contactme h1 {
   padding-bottom: 2rem;
 }
 
-.contactMe-form{
+.contactMe-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  width: 100%;
 }
 
-.contactMe-form input{
+.contactMe-form input,
+.contactMe-form textarea {
   width: 100%;
+  max-width: 500px; /* Set a max-width for inputs and textarea */
   outline: none;
   border: 2px solid #aaa;
   border-radius: 4px;
@@ -108,27 +111,14 @@ body {
   transition: 0.3s;
 }
 
-.contactMe-form input[type=text]:focus{
+.contactMe-form input:focus,
+.contactMe-form textarea:focus {
   border-color: dodgerblue;
   box-shadow: 0 0 8px 0 dodgerblue;
+  transform: scale(1.05);
 }
 
-.contactMe-form textarea{
-  width: 100%;
-  outline: none;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  padding: 8px;
-  transition: 0.3s;
-}
-
-.contactMe-form textarea[itemType=text]:focus{
-  border-color: dodgerblue;
-  box-shadow: 0 0 8px 0 dodgerblue;
-}
-
-.contactMe-form button{
+.contactMe-form button {
   font-weight: 700;
   background: #453bcd;
   padding: 10px 20px;
@@ -145,8 +135,15 @@ body {
 
 .contactMe-form button:hover,
 .contactMe-form button:focus,
-.contactMe-form button:active{
+.contactMe-form button:active {
   box-shadow: 0 0 20px rgba(0 0 0 0.5);
   transform: scale(1.1);
 }
 
+.contactMe-form button:disabled,
+.contactMe-form button.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  border: 1px solid #cccccc;
+}
