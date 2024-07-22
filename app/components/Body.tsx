@@ -6,19 +6,33 @@ import html from "../../public/icons/html.png";
 import javascript from "../../public/icons/javascript.png";
 import typescript from "../../public/icons/typescript.png";
 import git from "../../public/icons/git.png";
-import nodejs from "../../public/icons/nodejs.png";
 import sql from "../../public/icons/sql.png";
 import tailwind from "../../public/icons/tailwind-css.png";
 import react from "../../public/icons/react.png";
 import python from "../../public/icons/python.png";
+import nodejs from "../../public/icons/nodejs.png";
 import css from "../../public/icons/css3.png";
 import Image, { StaticImageData } from "next/image";
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import ContactMe from "./ContactMe";
 
 export default function Body() {
-    const icons: Array<StaticImageData> = [react, html, css, tailwind, nodejs, sql, javascript, typescript, python, c_sharp, c_plus, git];
+    const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
+
+    const icons: Array<{ src: StaticImageData, name: string }> = [
+        { src: nodejs, name: 'Node.js' },
+        { src: react, name: 'React' },
+        { src: c_sharp, name: 'C#' },
+        { src: python, name: 'Python' },
+        { src: javascript, name: 'JavaScript' },
+        { src: typescript, name: 'TypeScript' },
+        { src: tailwind, name: 'Tailwind CSS' },
+        { src: css, name: 'CSS' },
+        { src: html, name: 'HTML' },
+        { src: git, name: 'Git' },
+        { src: sql, name: 'SQL' }
+    ];
 
     const entries = useIntersectionObserver({ threshold: 0.1 });
 
@@ -88,7 +102,7 @@ export default function Body() {
                 <span>
                     <p className="text-3xl font-bold p-3">About me</p>
                     <br />
-                    <div className="pl-10 text-xl">Hello! I am a web development programmer and an Industrial & Management engineer. With 1 year of experience in the field, I am proficient in web development. {"I'm "} committed to delivering high-quality solutions and constantly staying updated with the latest industry trends. When {"I'm "} not coding, I enjoy playing the guitar, traveling, and spending time with my family and friends. Additionally, I am passionate about learning new technologies and improving my skills to stay ahead in the ever-evolving tech landscape. I believe in the power of collaboration and thrive in environments where I can work with like-minded individuals to create innovative solutions.</div>
+                    <div className="pl-10 text-xl">Hello! I am a web development programmer and an Industrial & Management engineer. With 1 year of experience in the field, I am proficient in web development. {"I'm "} committed to delivering high-quality solutions and constantly staying updated with the latest industry trends. When {"I'm "} not coding, I enjoy playing the guitar, surfing, and spending time with my family and friends. Additionally, I am passionate about learning new technologies and improving my skills to stay ahead in the ever-evolving tech landscape. I believe in the power of collaboration and thrive in environments where I can work with like-minded individuals to create innovative solutions.</div>
                 </span>
             </section>
 
@@ -102,7 +116,19 @@ export default function Body() {
                     <br />
                     <div className="flex flex-row justify-between">
                         {icons.map((icon) => (
-                            <Image key={`${icon}`} alt={`${icon}`} src={icon} />
+                            <div
+                                key={icon.name}
+                                onMouseEnter={() => setHoveredIcon(icon.name)}
+                                onMouseLeave={() => setHoveredIcon(null)}
+                                className="relative"
+                            >
+                                <Image alt={icon.name} src={icon.src} className="h-16 w-16" />
+                                {hoveredIcon === icon.name && (
+                                    <div className="absolute top-full mt-2 p-1 bg-gray-700 text-white rounded">
+                                        {icon.name}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </div>
                 </span>
@@ -112,7 +138,7 @@ export default function Body() {
             <br />
             <br />
             {/* Projects */}
-            <section id="projects" className="fade-in-section opacity-0 transform translate-x-[-50%] transition-all duration-1500 ">
+            <section id="projects" className="fade-in-section transform translate-x-[-50%] transition-all duration-1500 ">
                 <p className="text-3xl font-bold p-3">MY PROJECTS</p>
 
                 <br />
@@ -133,9 +159,7 @@ export default function Body() {
             {/* Contact Info */}
             <section id="contact-me" className="fade-in-section opacity-0 transform translate-x-[-50%] transition-all duration-1500">
                 {/* Your Contact Info Content */}
-                <ContactMe>
-
-                </ContactMe>
+                <ContactMe />
             </section>
         </div>
     );
