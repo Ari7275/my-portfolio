@@ -2,23 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+@base {
+  :root {
+    --background: 0 0% 100%;
+  }
+  
+  :dark {
+    --background: 0 0% 0%;
+  }
 }
 
-:root {
-  --background: 0 0% 100%;
-}
 
+/* 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -106,7 +109,8 @@ body {
 .contactMe-form input,
 .contactMe-form textarea {
   width: 100%;
-  max-width: 500px; /* Set a max-width for inputs and textarea */
+  max-width: 500px;
+  /* Set a max-width for inputs and textarea */
   outline: none;
   border: 2px solid #aaa;
   border-radius: 4px;
