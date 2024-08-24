@@ -16,6 +16,8 @@ import Image, { StaticImageData } from "next/image";
 import { useState, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import ContactMe from "./ContactMe";
+import Projects from "./projects/Projects";
+import { SelectedPage } from "../shared/types";
 
 export default function Body() {
     const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
@@ -140,16 +142,7 @@ export default function Body() {
             {/* Projects */}
             <section id="projects" className="fade-in-section transform translate-x-[-50%] transition-all duration-1500 ">
                 <p className="text-3xl font-bold p-3">MY PROJECTS</p>
-
-                <br />
-                <br />
-                <br />
-                <div className="flex flex-col items-center">Oops, {"don't have any yet ;( i'm working on it!"} </div>
-                <br />
-                <br />
-                <br />
-
-                {/* Your Projects Content */}
+                <Projects />
             </section>
 
             <br />

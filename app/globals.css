@@ -155,3 +155,49 @@ body {
   cursor: not-allowed;
   border: 1px solid #cccccc;
 }
+
+/* ----------- PROJECTS ------------- */
+
+#projects {
+  @apply mx-auto min-h-full  py-20;
+}
+
+.projects-header {
+  @apply my-5 mx-8;
+}
+
+.projects-header p {
+  @apply my-5 text-sm leading-5;
+}
+
+.projects-body {
+  @apply flex flex-col items-center justify-between gap-8 mt-5;
+}
+
+.project {
+  @apply mt-5 rounded-md border-2 border-[rgba(164,161,155,0.36)] text-center pb-8 bg-[#f2f2f2];
+}
+
+.project-image {
+  @apply flex w-full rounded-t-md justify-center mb-4;
+}
+
+/* .project-image img {
+  @apply ;
+} */
+
+.project-body h4 {
+  @apply text-xl pb-4 tracking-widest;
+}
+
+.project-body p {
+  @apply pb-4 px-4;
+}
+
+.project-body {
+  @apply flex flex-col items-center;
+}
+
+.project-body a {
+  @apply no-underline border-2 border-[#453bcd] py-1 px-3 rounded text-[#453bcd] flex w-max items-center gap-2 opacity-100 transition-all;
+}
