@@ -334,10 +334,10 @@ body {
   }
 
 .home {
-  @apply flex flex-col gap-16 pt-16 justify-center;
+  @apply flex flex-col gap-16 pt-36 justify-center;
 }
  
 .contact-me-btn{
-  @apply  border-[3px] text-sm rounded-lg font-extrabold border-black transform transition-transform duration-300 hover:scale-125 ;
+  @apply  border-[3px] w-32 bg-white text-[10px] rounded-lg font-extrabold border-black transform transition-transform duration-300 hover:scale-125 ;
 }
 }
