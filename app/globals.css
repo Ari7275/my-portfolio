@@ -7,30 +7,16 @@
   :root {
     --background: 0 0% 100%;
   }
-  
+
   :dark {
     --background: 0 0% 0%;
   }
 }
 
 
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
 
 body {
   color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
 }
 
 @layer home {
@@ -46,6 +32,26 @@ body {
   }
 }
 
+
+.home {
+  @apply flex gap-16 pt-32 justify-center;
+}
+
+.my-img {
+
+  @apply w-96 h-96 border-[16px] shadow-2xl rounded-ee-[50%] rounded-ss-[50%] rounded-se-[20%] rounded-es-[20%] border-[#28282B] overflow-hidden;
+  
+}
+
+/* skill stack */
+.skill-stack {
+  @apply opacity-0 transform translate-x-[-50%] transition-all duration-1500;
+}
+
+.skill-item{
+  @apply flex flex-row gap-4 justify-between ;
+}
+
 /* SideButtons */
 .side-buttons {
   display: flex;
@@ -53,6 +59,7 @@ body {
   align-items: center;
   position: fixed;
   right: 0;
+  z-index: 20;
   bottom: 0;
   margin: 1.5rem;
 }
@@ -79,6 +86,10 @@ body {
   border: transparent;
   outline: none;
   padding: 1rem;
+}
+
+.contact-me-btn{
+  @apply border-[3px] rounded-lg  font-extrabold border-black w-96 p-3 transform transition-transform duration-300 hover:scale-125 ;
 }
 
 /* ---------- CONTACT ME --------- */
@@ -159,7 +170,7 @@ body {
 /* ----------- PROJECTS ------------- */
 
 #projects {
-  @apply mx-auto min-h-full  py-20;
+  @apply mx-auto min-h-full py-8;
 }
 
 .projects-header {
@@ -175,7 +186,13 @@ body {
 }
 
 .project {
-  @apply mt-5 rounded-md border-2 border-[rgba(164,161,155,0.36)] text-center pb-8 bg-[#f2f2f2];
+  margin-top: 1.25rem; /* mt-5 */
+  border-radius: 0.375rem; /* rounded-md */
+  border-width: 2px; /* border-2 */
+  border-color: rgba(164, 161, 155, 0.36); /* border-[rgba(164, 161, 155, 0.36)] */
+  text-align: center; /* text-center */
+  padding-bottom: 2rem; /* pb-8 */
+  background-color: white; /* bg-white */
 }
 
 .project-image {
@@ -200,4 +217,127 @@ body {
 
 .project-body a {
   @apply no-underline border-2 border-[#453bcd] py-1 px-3 rounded text-[#453bcd] flex w-max items-center gap-2 opacity-100 transition-all;
+}
+
+
+/* ----------- MOBILE ------------- */
+/* Tailwind CSS */
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  :root {
+    --background: 0 0% 100%;
+  }
+
+  :dark {
+    --background: 0 0% 0%;
+  }
+
+  body {
+    @apply text-[rgb(var(--foreground-rgb))] p-4;
+  }
+
+  .side-buttons {
+    @apply flex flex-col items-center fixed right-0 bottom-0 m-4;
+  }
+
+  .side-buttons a {
+    @apply text-[#453bcd] text-xl p-0 my-2 cursor-pointer transition-transform duration-300 ease-in-out;
+  }
+
+  .side-buttons a:hover {
+    transform: rotate(360deg);
+  }
+
+  .side-buttons dialog {
+    @apply absolute inset-0 m-auto min-w-[8rem] min-h-[8rem] border-transparent outline-none p-4;
+  }
+
+  #contactme {
+    @apply mx-auto min-h-screen w-[90%] py-12 flex flex-col items-center justify-center;
+  }
+
+  #contactme h1 {
+    @apply pb-6;
+  }
+
+
+  .contactMe-form {
+    @apply flex flex-col gap-4 items-center w-full;
+  }
+
+  .contactMe-form input,
+  .contactMe-form textarea {
+    @apply w-full max-w-[400px] outline-none border-2 border-gray-400 rounded-md my-2 p-2 transition-transform duration-300;
+  }
+
+  .contactMe-form input:focus,
+  .contactMe-form textarea:focus {
+    border-color: dodgerblue;
+    box-shadow: 0 0 8px 0 dodgerblue;
+    transform: scale(1.05);
+  }
+
+  .contactMe-form button {
+    @apply font-bold bg-[#453bcd] py-2 px-4 text-white rounded-md shadow-md border-none outline-none transition-transform duration-300;
+  }
+
+  .contactMe-form button:hover,
+  .contactMe-form button:focus,
+  .contactMe-form button:active {
+    @apply shadow-lg transform scale-110;
+  }
+
+  .contactMe-form button:disabled,
+  .contactMe-form button.disabled {
+    @apply bg-gray-300 text-gray-500 cursor-not-allowed border-gray-300;
+  }
+
+  #projects {
+    @apply mx-auto min-h-screen py-2;
+  }
+
+  .projects-header {
+    @apply my-5 mx-4;
+  }
+
+  .projects-header p {
+    @apply my-5 text-sm leading-5;
+  }
+
+  .projects-body {
+    @apply flex flex-col items-center gap-4 mt-5;
+  }
+
+  .project {
+    /* @apply mt-5 rounded-md border-2 border-[rgba(164, 161, 155, 0.36)] text-center pb-8 bg-[#f2f2f2]; */
+  }
+
+  .project-image {
+    @apply flex w-full rounded-t-md justify-center mb-4;
+  }
+
+  .project-body h4 {
+    @apply text-xl pb-4 tracking-widest;
+  }
+
+  .project-body p {
+    @apply pb-4 px-4;
+  }
+
+  .project-body {
+    @apply flex flex-col items-center;
+  }
+
+  .project-body a {
+    @apply no-underline border-2 border-[#453bcd] py-1 px-3 rounded text-[#453bcd] flex w-max items-center gap-2 opacity-100 transition-all;
+  }
+
+.home {
+  @apply flex flex-col gap-16 pt-16 justify-center;
+}
+ 
+.contact-me-btn{
+  @apply  border-[3px] text-sm rounded-lg font-extrabold border-black transform transition-transform duration-300 hover:scale-125 ;
+}
 }

@@ -5,6 +5,7 @@ import c_plus from "../../public/icons/c_plus.png";
 import html from "../../public/icons/html.png";
 import javascript from "../../public/icons/javascript.png";
 import typescript from "../../public/icons/typescript.png";
+import java_icon from "../../public/icons/java_icon.png";
 import git from "../../public/icons/git.png";
 import sql from "../../public/icons/sql.png";
 import tailwind from "../../public/icons/tailwind-css.png";
@@ -18,9 +19,12 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import ContactMe from "./ContactMe";
 import Projects from "./projects/Projects";
 import { SelectedPage } from "../shared/types";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 export default function Body() {
+
     const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
+    const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
 
     const icons: Array<{ src: StaticImageData, name: string }> = [
         { src: nodejs, name: 'Node.js' },
@@ -33,7 +37,8 @@ export default function Body() {
         { src: css, name: 'CSS' },
         { src: html, name: 'HTML' },
         { src: git, name: 'Git' },
-        { src: sql, name: 'SQL' }
+        { src: sql, name: 'SQL' },
+        { src: java_icon, name: 'Java' }
     ];
 
     const entries = useIntersectionObserver({ threshold: 0.1 });
@@ -62,71 +67,90 @@ export default function Body() {
     }
 
     return (
-        <div className="w-full grow p-28 flex flex-col gap-16">
+        <div className="w-full grow flex flex-col gap-16 ">
+
 
             {/* Home */}
-            <section id="home" className="flex flex-row p-5 justify-center gap-16">
-                <div className="flex flex-col gap-6 text-3xl justify-center">
+            <section id="home" className="home">
+
+                <div className={`flex flex-col gap-6 text-3xl justify-center`}>
                     <h1 className="text-5xl font-bold">
                         Hi! {"I'm "}
                         <span className="text-[#453bcd] font-bold tracking-widest">Ari Vainer</span>
                     </h1>
 
-                    <p className="text-7xl font-bold">Full-Stack</p>
-                    <p className="text-7xl font-bold fadeaway">Developer</p>
-                    <div className="text-[20px]">
+                    <p className="text-2xl md:text-7xl text-wrap font-bold">Full-Stack Developer</p>
+
+                    <div className="text-wrap text-lg">
                         <p>A passionate Full-Stack Developer,</p>
                         <p>love to create and to learn new things, Based in Israel, Tel Aviv 📌</p>
+
                     </div>
+
+
+
                 </div>
 
-                <div className="border-[14px] shadow-3xl rounded-ee-[50%] rounded-ss-[50%]  rounded-se-[20%] rounded-es-[20%] z-10 border-[#28282B] overflow-hidden">
-                    <Image
-                        src="/portfolioImg.png"
-                        width={400}
-                        height={630}
-                        alt=""
-                    />
-                </div>
+
+                {isAboveMediumScreens &&
+
+                    <div className="my-img">
+                        <Image
+                            className="bg-black w-full h-full object-cover"
+                            src="/portfolioImg.png"
+                            width={400}
+                            height={400}
+                            alt=""
+                        />
+                    </div>
+                }
 
             </section>
 
-            <div className="flex justify-center pb-[35px]">
-                <button onClick={() => scrollToSection('contact-me')} className="border-[3px]  rounded-lg font-extrabold border-black px-20 py-3 transform transition-transform duration-300 hover:scale-125">CONTACT ME</button>
+            < div className="flex justify-center">
+                <button onClick={() => scrollToSection('contact-me')} className="contact-me-btn">
+                    CONTACT ME
+                </button>
             </div>
+            
 
+                
 
             <br />
             <br />
 
             {/* About Me */}
-            <section id="about-me" className="fade-in-section opacity-0 transform translate-x-[-50%] transition-all duration-1500">
-                <span>
-                    <p className="text-3xl font-bold p-3">About me</p>
-                    <br />
-                    <div className="pl-10 text-xl">Hello! I am a web development programmer and an Industrial & Management engineer. With 1 year of experience in the field, I am proficient in web development. {"I'm "} committed to delivering high-quality solutions and constantly staying updated with the latest industry trends. When {"I'm "} not coding, I enjoy playing the guitar, surfing, and spending time with my family and friends. Additionally, I am passionate about learning new technologies and improving my skills to stay ahead in the ever-evolving tech landscape. I believe in the power of collaboration and thrive in environments where I can work with like-minded individuals to create innovative solutions.</div>
-                </span>
+            <section id="about-me" className="fade-in-section w-full grow opacity-0 transform translate-x-[-50%] transition-all  duration-1500">
+                <p className="text-2xl font-bold">About me</p>
+                <br />
+                <p className="flex leading-6 mx-auto p-3" >
+                    Hello! I am a web development programmer and an Industrial &
+                    Management engineer. With 1 year of experience in the field, I am proficient in web development.
+                    {"I'm "} committed to delivering high-quality solutions and constantly staying updated with the latest industry trends.
+                    When {"I'm "} not coding, I enjoy playing the guitar, surfing, and spending time with my family and friends.
+                    Additionally, I am passionate about learning new technologies and improving my skills to stay ahead in the ever-evolving tech landscape.
+                    I believe in the power of collaboration and thrive in environments where I can work with like-minded individuals to create innovative solutions.
+                </p>
             </section>
 
             <br />
 
             {/* Skills Stack */}
-            <section id="skill-stack" className="fade-in-section opacity-0 transform translate-x-[-50%] transition-all duration-1500">
-                <span className="flex flex-col gap-2">
+            <section id="skill-stack" className="skill-stack fade-in-section">
+                <span className="flex flex-col gap-8">
                     <p className="text-2xl font-bold ml-2">Skills stack</p>
-                    <br />
-                    <br />
-                    <div className="flex flex-row justify-between">
+                    
+                    <div className="flex flex-wrap lg:flex-row gap-4 justify-center ">
                         {icons.map((icon) => (
-                            <div
+                            <div 
                                 key={icon.name}
                                 onMouseEnter={() => setHoveredIcon(icon.name)}
                                 onMouseLeave={() => setHoveredIcon(null)}
-                                className="relative"
+                                className="relative flex flex-col p-3 items-center"
                             >
-                                <Image alt={icon.name} src={icon.src} className="h-16 w-16" />
+                                <Image alt={icon.name} src={icon.src} className="h-16 w-16 p-1 " />
                                 {hoveredIcon === icon.name && (
-                                    <div className="absolute top-full mt-2 p-1 bg-gray-700 text-white rounded">
+                                    <div className="absolute z-10 top-full mt-2 p-1 bg-gray-700 text-white rounded">
                                         {icon.name}
                                     </div>
                                 )}
@@ -135,13 +159,15 @@ export default function Body() {
                     </div>
                 </span>
             </section>
+
             <br />
             <br />
             <br />
             <br />
+
             {/* Projects */}
-            <section id="projects" className="fade-in-section transform translate-x-[-50%] transition-all duration-1500 ">
-                <p className="text-3xl font-bold p-3">MY PROJECTS</p>
+            <section id="projects" className="fade-in-section transform translate-x-[-50%] transition-all duration-1500 lg:pl-3">
+                <p className="text-2xl font-bold ">MY PROJECTS</p>
                 <Projects />
             </section>
 
@@ -150,10 +176,11 @@ export default function Body() {
             <br />
 
             {/* Contact Info */}
-            <section id="contact-me" className="fade-in-section opacity-0 transform translate-x-[-50%] transition-all duration-1500">
+            <section id="contact-me" className="fade-in-section pb-16 opacity-0 transform translate-x-[-50%] transition-all duration-1500">
                 {/* Your Contact Info Content */}
                 <ContactMe />
             </section>
+
         </div>
     );
 }

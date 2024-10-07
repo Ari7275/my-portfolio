@@ -40,13 +40,13 @@ export default function ContactMe() {
     }
 
     return (
-        <div className="flex flex-col gap-4 p-5 items-center justify-center">
-            <p className="text-3xl font-bold p-3">Send me an email if you like what you see!</p>
+        <div className="pb-36 lg:flex flex-col gap-4 p-5 items-center justify-center">
+            <p className="text-lg  lg:text-3xl font-bold p-3">Send me an email if you like what you see!</p>
 
             {/* FORM */}
             <form
                 className="contactMe-form"
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(onSubmit)}g
             >
                 {/* NAME */}
                 <input
