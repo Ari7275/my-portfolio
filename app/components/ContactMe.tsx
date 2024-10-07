@@ -46,7 +46,7 @@ export default function ContactMe() {
             {/* FORM */}
             <form
                 className="contactMe-form"
-                onSubmit={handleSubmit(onSubmit)}g
+                onSubmit={handleSubmit(onSubmit)}
             >
                 {/* NAME */}
                 <input
