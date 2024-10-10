@@ -16,5 +16,4 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body className={inter.className}>{children}</body>
     </html>
   );
-  
 }

@@ -23,7 +23,7 @@ export default function ContactMe() {
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'https://formsubmit.co/rywyyn@gmail.com';
-        
+
         Object.keys(data).forEach(key => {
             const input = document.createElement('input');
             input.type = 'hidden';
@@ -41,15 +41,16 @@ export default function ContactMe() {
 
     return (
         <div className="pb-36 lg:flex flex-col gap-4 p-5 items-center justify-center">
-            <p className="text-lg  lg:text-3xl font-bold p-3">Send me an email if you like what you see!</p>
+            <p className="text-lg  lg:text-3xl font-bold p-3 dark:text-[#dbd7d7]">Send me an email if you like what you see!</p>
 
             {/* FORM */}
             <form
                 className="contactMe-form"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                {/* NAME */}
+                {/* NAME  border-[#a3a2a7] shadow-[0_0_8px_0_#f7f6fa] transform scale-105*/}
                 <input
+                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f] dark:focus:border-[#a3a2a7] dark:focus:shadow-[0_0_8px_0_#f7f6fa] dark:focus:transform scale-105"
                     type="text"
                     placeholder="Name"
                     autoComplete="name"
@@ -67,8 +68,8 @@ export default function ContactMe() {
                 )}
 
                 {/* EMAIL */}
-                <input 
-                 
+                <input
+                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f] dark:focus:border-[#a3a2a7] dark:focus:shadow-[0_0_8px_0_#f7f6fa] dark:focus:transform scale-105"
                     type="email"
                     placeholder="Email"
                     autoComplete="email"
@@ -87,6 +88,7 @@ export default function ContactMe() {
 
                 {/* MESSAGE */}
                 <textarea
+                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f] dark:focus:border-[#a3a2a7] dark:focus:shadow-[0_0_8px_0_#f7f6fa] dark:focus:transform scale-105"
                     rows={4}
                     cols={50}
                     itemType="text"

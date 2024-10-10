@@ -94,14 +94,14 @@ export default function Body() {
                 <section id="home" className="home">
 
                     <div className={`flex flex-col gap-6 text-3xl justify-center`}>
-                        <h1 className="text-5xl font-bold">
+                        <h1 className="text-5xl font-bold dark:text-[#6b6868]">
                             Hi! {"I'm "}
-                            <span className="text-[#453bcd] font-bold tracking-widest">Ari Vainer</span>
+                            <span className="text-[#453bcd] font-bold tracking-widest dark:text-[#e7dede]">Ari Vainer</span>
                         </h1>
 
-                        <p className="text-2xl md:text-7xl text-wrap font-bold">Full-Stack Developer</p>
+                        <p className="text-2xl md:text-7xl text-wrap font-bold dark:text-[#a39f9f]">Full-Stack Developer</p>
 
-                        <div className="text-wrap text-lg">
+                        <div className="text-wrap text-lg dark:text-[#c7c1c1]">
                             <p>A passionate Full-Stack Developer,</p>
                             <p>love to create and to learn new things, Based in Israel, Tel Aviv 📌</p>
 
@@ -112,29 +112,17 @@ export default function Body() {
                     </div>
 
 
-                    {isAboveMediumScreens &&
 
-                        <div className="my-img">
-                            <Image
-                                className="bg-black w-full h-full object-cover"
-                                src="/portfolioImg.png"
-                                width={400}
-                                height={400}
-                                alt=""
-                            />
-                        </div>
-                    }
+
 
                 </section>
 
 
-                < div className="flex justify-center">
-                    <button onClick={() => scrollToSection('contact-me')} className="contact-me-btn">
+                <div className="flex justify-center p-8 ">
+                    <button onClick={() => scrollToSection('contact-me')} className="contact-me-btn dark:text-[#928f8f] dark:border-[#bbbaba]">
                         CONTACT ME
                     </button>
                 </div>
-
-
 
 
                 <br />
@@ -142,9 +130,10 @@ export default function Body() {
 
                 {/* About Me */}
                 <section id="about-me" className="fade-in-section w-full grow opacity-0 transform translate-x-[-50%] transition-all  duration-1500">
-                    <p className="text-2xl font-bold">About me</p>
+                    <p className="text-2xl font-bold dark:text-[#dbd7d7]">About me</p>
                     <br />
-                    <p className="flex leading-6 mx-auto p-3" >
+                    <p className="flex leading-6 mx-auto p-3 dark:text-[#dfdbdb]" >
+                        
                         Hello! I am a web development programmer and an Industrial &
                         Management engineer. With 1 year of experience in the field, I am proficient in web development.
                         {"I'm "} committed to delivering high-quality solutions and constantly staying updated with the latest industry trends.
@@ -159,7 +148,7 @@ export default function Body() {
                 {/* Skills Stack */}
                 <section id="skill-stack" className="skill-stack fade-in-section">
                     <span className="flex flex-col gap-8">
-                        <p className="text-2xl font-bold ml-2">Skills stack</p>
+                        <p className="text-2xl font-bold ml-2 dark:text-[#dbd7d7]">Skills stack</p>
 
                         <div className="flex flex-wrap lg:flex-row gap-4 justify-center ">
                             {icons.map((icon) => (
@@ -188,7 +177,7 @@ export default function Body() {
 
                 {/* Projects */}
                 <section id="projects" className="fade-in-section transform translate-x-[-50%] transition-all duration-1500 lg:pl-3">
-                    <p className="text-2xl font-bold ">MY PROJECTS</p>
+                    <p className="text-2xl font-bold dark:text-[#dbd7d7]">MY PROJECTS</p>
                     <Projects />
                 </section>
 
@@ -205,15 +194,15 @@ export default function Body() {
 
             </div>
 
-            {!isAboveMediumScreens && isAtEndOfScreen && 
-            <button className="fixed left-8 bottom-8" onClick={() => scrollToSection('home')}>
-                <Image
-                    src={arrow_up}
-                    width={25}
-                    height={25} 
-                    alt={""}                
-                />
-            </button>
+            {!isAboveMediumScreens && isAtEndOfScreen &&
+                <button className="fixed left-8 bottom-8" onClick={() => scrollToSection('home')}>
+                    <Image
+                        src={arrow_up}
+                        width={25}
+                        height={25}
+                        alt={""}
+                    />
+                </button>
             }
 
 

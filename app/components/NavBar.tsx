@@ -29,24 +29,18 @@ export default function NavBar() {
     }
 
     return (
-        <div>
+        <div className="w-full">
             {isAboveMediumScreens ? (
-                <div className="fixed top-0 p-5 z-40 bg-white h-[10%] w-full">
+                <div className="fixed top-0 p-5 z-40 bg-white h-[10%] w-full  dark:bg-[#2C2C2C]">
                     <div className="flex justify-between items-center">
                         <div className="flex flex-row text-lg font-bold gap-8">
-                            <button onClick={() => scrollToSection('home')}>Home</button>
-                            <button onClick={() => scrollToSection('about-me')}>About Me</button>
-                            <button onClick={() => scrollToSection('projects')}>Projects</button>
-                            <button onClick={() => scrollToSection('contact-me')}>Contact Me</button>
+                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('home')}>Home</button>
+                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('about-me')}>About Me</button>
+                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('projects')}>Projects</button>
+                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('contact-me')}>Contact Me</button>
                         </div>
 
-                        <Image
-                            className="mr-14"
-                            width={50}
-                            height={50}
-                            alt=""
-                            src={"/icons/navbar.png"}
-                        />
+                      
                     </div>
                 </div>
             ) : !isMenuToggled &&

@@ -7,9 +7,9 @@
   :root {
     --background: 0 0% 100%;
   }
-
+  
   :dark {
-    --background: 0 0% 0%;
+    
   }
 }
 
@@ -34,7 +34,7 @@ body {
 
 
 .home {
-  @apply flex gap-16 pt-32 justify-center;
+  @apply flex gap-16 pt-60 pb-24 justify-center;
 }
 
 .my-img {
@@ -65,7 +65,7 @@ body {
 }
 
 .side-buttons a {
-  color: #453bcd;
+  /* color: #453bcd; */
   font-size: 2rem;
   padding: 0;
   margin-block: 0.5rem;
@@ -130,12 +130,16 @@ body {
   transition: 0.3s;
 }
 
-.contactMe-form input:focus,
+
+/* .contactMe-form input:focus,
 .contactMe-form textarea:focus {
-  border-color: dodgerblue;
-  box-shadow: 0 0 8px 0 dodgerblue;
-  transform: scale(1.05);
-}
+  @apply border-[#a3a2a7] shadow-[0_0_8px_0_#f7f6fa] transform scale-105;
+} */
+
+/* .contactMe-form input:focus,
+.contactMe-form textarea:focus {
+  @apply border-dodgerblue shadow-[0_0_8px_0_dodgerblue] transform scale-105;
+} */
 
 .contactMe-form button {
   font-weight: 700;
@@ -170,7 +174,7 @@ body {
 /* ----------- PROJECTS ------------- */
 
 #projects {
-  @apply mx-auto min-h-full py-8;
+  @apply mx-auto min-h-full  py-3;
 }
 
 .projects-header {
@@ -189,7 +193,8 @@ body {
   margin-top: 1.25rem; /* mt-5 */
   border-radius: 0.375rem; /* rounded-md */
   border-width: 2px; /* border-2 */
-  border-color: rgba(164, 161, 155, 0.36); /* border-[rgba(164, 161, 155, 0.36)] */
+  /* border-color: rgba(164, 161, 155, 0.36); border-[rgba(164, 161, 155, 0.36)] */
+  border-color: black;
   text-align: center; /* text-center */
   padding-bottom: 2rem; /* pb-8 */
   background-color: white; /* bg-white */
@@ -224,7 +229,7 @@ body {
 /* Tailwind CSS */
 
 /* Mobile styles */
-@media (max-width: 600px) {
+@media (max-width: 600px ) {
   :root {
     --background: 0 0% 100%;
   }
@@ -242,7 +247,7 @@ body {
   }
 
   .side-buttons a {
-    @apply text-[#453bcd] text-xl p-0 my-2 cursor-pointer transition-transform duration-300 ease-in-out;
+    @apply text-xl p-0 my-2 cursor-pointer transition-transform duration-300 ease-in-out;
   }
 
   .side-buttons a:hover {
@@ -273,9 +278,7 @@ body {
 
   .contactMe-form input:focus,
   .contactMe-form textarea:focus {
-    border-color: dodgerblue;
-    box-shadow: 0 0 8px 0 dodgerblue;
-    transform: scale(1.05);
+    @apply border-[#f7f6fa] shadow-[0_0_8px_0_dodgerblue] transform scale-105;
   }
 
   .contactMe-form button {
@@ -338,6 +341,8 @@ body {
 }
  
 .contact-me-btn{
-  @apply  border-[3px] w-32 bg-white text-[10px] rounded-lg font-extrabold border-black transform transition-transform duration-300 hover:scale-125 ;
+  @apply  border-[3px] w-32 text-[10px] rounded-lg font-extrabold border-black transform transition-transform duration-300 hover:scale-125  dark:text-[#928f8f] dark:border-[#bbbaba] ;
 }
+
+
 }
