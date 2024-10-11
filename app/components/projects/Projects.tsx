@@ -1,24 +1,46 @@
 import { ProjectType, SelectedPage } from "@/app/shared/types";
 import Project from "./Project";
-import project1 from "../../assets/project1.jpeg";
+import project1Light from "../../assets/project1Light.jpeg"; 
+import project1Dark from "../../assets/project1Dark.png"; 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const projects: Array<ProjectType> = [
-  {
-    image: project1,
-    title: "NOTES",
-    description:
-      "A Notes app to write, edit or delete your notes, you can filter notes by tags and edit them.",
-    skills: "React - TypeScript - React-Bootstrap",
-    url: "https://notes-dr6.pages.dev",
-  }
-];
+
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
 const Projects = () => {
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(darkModeMediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+
+    darkModeMediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      darkModeMediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
+
+  const projects: Array<ProjectType> = [
+    {
+      image: isDarkMode ? project1Dark : project1Light,
+      title: "NOTES",
+      description:
+        "A Notes app to write, edit or delete your notes, you can filter notes by tags and edit them.",
+      skills: "React - TypeScript - React-Bootstrap",
+      url: "https://notes-dr6.pages.dev",
+    }
+  ];
+
   return (
 
     <section id="projects">

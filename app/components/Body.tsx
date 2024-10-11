@@ -106,15 +106,7 @@ export default function Body() {
                             <p>love to create and to learn new things, Based in Israel, Tel Aviv 📌</p>
 
                         </div>
-
-
-
                     </div>
-
-
-
-
-
                 </section>
 
 
@@ -128,12 +120,12 @@ export default function Body() {
                 <br />
                 <br />
 
-                {/* About Me */}
+                {/* About Me */ }
                 <section id="about-me" className="fade-in-section w-full grow opacity-0 transform translate-x-[-50%] transition-all  duration-1500">
                     <p className="text-2xl font-bold dark:text-[#dbd7d7]">About me</p>
                     <br />
                     <p className="flex leading-6 mx-auto p-3 dark:text-[#dfdbdb]" >
-                        
+
                         Hello! I am a web development programmer and an Industrial &
                         Management engineer. With 1 year of experience in the field, I am proficient in web development.
                         {"I'm "} committed to delivering high-quality solutions and constantly staying updated with the latest industry trends.
@@ -145,7 +137,7 @@ export default function Body() {
 
                 <br />
 
-                {/* Skills Stack */}
+    {/* Skills Stack */ }
                 <section id="skill-stack" className="skill-stack fade-in-section">
                     <span className="flex flex-col gap-8">
                         <p className="text-2xl font-bold ml-2 dark:text-[#dbd7d7]">Skills stack</p>
@@ -175,7 +167,7 @@ export default function Body() {
                 <br />
                 <br />
 
-                {/* Projects */}
+    {/* Projects */ }
                 <section id="projects" className="fade-in-section transform translate-x-[-50%] transition-all duration-1500 lg:pl-3">
                     <p className="text-2xl font-bold dark:text-[#dbd7d7]">MY PROJECTS</p>
                     <Projects />
@@ -185,28 +177,27 @@ export default function Body() {
                 <br />
                 <br />
 
-                {/* Contact Info */}
-                <section id="contact-me" className="fade-in-section pb-16 opacity-0 transform translate-x-[-50%] transition-all duration-1500">
-                    {/* Your Contact Info Content */}
-                    <ContactMe />
-                </section>
+    {/* Contact Info */ }
+    <section id="contact-me" className="fade-in-section pb-16 opacity-0 transform translate-x-[-50%] transition-all duration-1500">
+        {/* Your Contact Info Content */}
+        <ContactMe />
+    </section>
 
 
-            </div>
+            </div >
 
-            {!isAboveMediumScreens && isAtEndOfScreen &&
-                <button className="fixed left-8 bottom-8" onClick={() => scrollToSection('home')}>
-                    <Image
-                        src={arrow_up}
-                        width={25}
-                        height={25}
-                        alt={""}
-                    />
-                </button>
-            }
-
+        
+            <button className="absolute left-8 bottom-8" onClick={() => scrollToSection('home')}>
+                <Image
+                    src={arrow_up}
+                    width={25}
+                    height={25}
+                    alt={""}
+                />
+            </button>
 
 
-        </div>
+
+        </div >
     );
 }

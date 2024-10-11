@@ -13,7 +13,7 @@ type Props = {
 const Project = ({ image, title, description, skills, url }: Props) => {
   return (
     <motion.div
-      className="project"
+      className="project dark:bg-[#2C2C2C]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -32,11 +32,11 @@ const Project = ({ image, title, description, skills, url }: Props) => {
 
       </div>
       
-      <div className="project-body">
+      <div className="project-body dark:text-[#cecece]">
         <h4>{title}</h4>
         <p>{description}</p>
         <p style={{ fontWeight: 700 }}>{skills}</p>
-        <a href={url} target="_blank" rel="noreferrer">
+        <a className="" href={url} target="_blank" rel="noreferrer">
           Learn more
         </a>
       </div>
