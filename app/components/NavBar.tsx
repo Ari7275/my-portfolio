@@ -3,14 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 export default function NavBar() {
 
     const isAboveMediumScreens = useMediaQuery("(min-width: 770px)");
     const [isMenuToggled, setIsMenuToggled] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
+    useEffect(() => {
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(darkModeMediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+
+    darkModeMediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      darkModeMediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
 
     function scrollToSection(sectionId: string) {
         const section = document.getElementById(sectionId);
@@ -49,19 +64,19 @@ export default function NavBar() {
                     style={{ border: "none", background: "transparent" }}
                     onClick={() => setIsMenuToggled(!isMenuToggled)}
                 >
-                    <Bars3Icon height="2.5rem" width="2.5rem" color="black" />
+                    <Bars3Icon height="2.5rem" width="2.5rem" color={`${isDarkMode ? "white" : "black"}`}/>
                 </button>
             </div>
             }
 
             {!isAboveMediumScreens && isMenuToggled && (
-                <div className="fixed flex flex-col h-full top-4 right-2 z-10 w-[75%] gap-6 bg-white items-end p-6">
+                <div className="fixed flex flex-col h-full top-4 right-2 z-10 w-[75%] gap-6 bg-white items-end p-6 dark:bg-[#2C2C2C] dark:text-[#cecece]">
 
                     <button className=""
                         style={{ border: "none", background: "transparent" }}
                         onClick={() => setIsMenuToggled(!isMenuToggled)}
                     >
-                        <XMarkIcon height="2.5rem" width="2.5rem" color="black" />
+                        <XMarkIcon height="2.5rem" width="2.5rem" color={`${isDarkMode ? "white" : "black"}`} />
                     </button>
 
                     <div className="flex flex-col h-full gap-[25%] items-end p-8 ">
