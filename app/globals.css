@@ -34,7 +34,7 @@ body {
 
 
 .home {
-  @apply flex gap-16 pt-60  justify-center;
+  @apply flex gap-16 pt-60 pb-32 justify-center;
 }
 
 .my-img {
