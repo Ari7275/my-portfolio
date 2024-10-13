@@ -32,6 +32,9 @@ body {
   }
 }
 
+.main-container{
+  @apply relative h-full w-full ;
+}
 
 .home {
   @apply flex gap-16 pt-60 pb-32 justify-center;
@@ -244,6 +247,10 @@ body {
     @apply text-[rgb(var(--foreground-rgb))] ;
   }
 
+  .main-container{
+    @apply relative h-full w-full p-6;
+  }
+  
   .side-buttons {
     @apply flex flex-col items-center fixed right-0 bottom-0 m-4;
   }
