@@ -44,7 +44,7 @@ export default function NavBar() {
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full ">
             {isAboveMediumScreens ? (
                 <div className="fixed top-0 p-5 z-40 bg-white h-[10%] w-full  dark:bg-[#2C2C2C]">
                     <div className="flex justify-between items-center">
