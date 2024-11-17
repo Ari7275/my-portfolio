@@ -87,7 +87,7 @@ export default function Body() {
 
     return (
         <div>
-            <div className="w-full grow flex flex-col gap-16 ">
+            <div className={`w-full grow flex flex-col gap-16 ${isAboveMediumScreens ? "pt-56" : "pt-32"} `}>
 
 
                 {/* Home */}
@@ -109,10 +109,10 @@ export default function Body() {
                     </div>
                 </section>
 
-
-                <div className="flex justify-center p-8 ">
-                    <button onClick={() => scrollToSection('contact-me')} className="contact-me-btn dark:text-[#928f8f] dark:border-[#bbbaba]">
-                        CONTACT ME
+          
+                <div className={`flex justify-center ${isAboveMediumScreens ? "pb-64 pt-16" : "pb-32 pt-8"}`}>
+                    <button onClick={() => scrollToSection('contact-me')} className="contact-me-btn text-lg dark:text-[#928f8f] dark:border-[#bbbaba]">
+                        CONTACT ME 
                     </button>
                 </div>
 

@@ -18,7 +18,7 @@ export default function Home() {
   return (
 
     <div className="h-full w-full dark:bg-[#2C2C2C]">
-      <main className={`relative h-full w-full ${isAboveMediumScreens ? "" : "p-6"}`}>
+      <main className={`relative h-full w-full p-6`}>
         <NavBar></NavBar>
         <SideButtons/>
         <Body></Body>
