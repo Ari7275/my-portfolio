@@ -1,93 +1,122 @@
 "use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import useMediaQuery from "../hooks/useMediaQuery";
 import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function NavBar() {
-
-    const isAboveMediumScreens = useMediaQuery("(min-width: 770px)");
     const [isMenuToggled, setIsMenuToggled] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDarkMode(darkModeMediaQuery.matches);
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        setIsDarkMode(darkModeMediaQuery.matches);
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsDarkMode(e.matches);
-    };
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
 
-    darkModeMediaQuery.addEventListener('change', handleChange);
+        window.addEventListener('scroll', handleScroll);
+        const handleChange = (e: MediaQueryListEvent) => {
+            setIsDarkMode(e.matches);
+        };
 
-    return () => {
-      darkModeMediaQuery.removeEventListener('change', handleChange);
-    };
-  }, []);
+        darkModeMediaQuery.addEventListener('change', handleChange);
+
+        return () => {
+            darkModeMediaQuery.removeEventListener('change', handleChange);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     function scrollToSection(sectionId: string) {
         const section = document.getElementById(sectionId);
-        const offset = 100; // Adjust this value to set the desired offset from the top
         if (section) {
+            const offset = 80;
             const elementPosition = section.getBoundingClientRect().top + window.scrollY;
             const offsetPosition = elementPosition - offset;
             window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
             });
-            setTimeout(() => {
-                setIsMenuToggled(false);
-            }, 500);
+            setIsMenuToggled(false);
         }
     }
 
+    const navLinks = [
+        { label: 'Home', id: 'home' },
+        { label: 'Gallery', id: 'gallery' },
+        { label: 'About Artist', id: 'about' },
+        { label: 'Contact', id: 'contact' },
+    ];
+
     return (
-        <div className="w-full ">
-            {isAboveMediumScreens ? (
-                <div className="fixed top-0 p-5 z-40 bg-white h-[10%] w-full  dark:bg-[#2C2C2C]">
-                    <div className="flex justify-between items-center">
-                        <div className="flex flex-row text-lg font-bold gap-8">
-                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('home')}>Home</button>
-                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('about-me')}>About Me</button>
-                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('projects')}>Projects</button>
-                            <button className="dark:text-[#dbd7d7]" onClick={() => scrollToSection('contact-me')}>Contact Me</button>
-                        </div>
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+            isScrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md' : 'bg-transparent'
+        }`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between items-center h-16 md:h-20">
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex space-x-8">
+                        {navLinks.map((link) => (
+                            <button
+                                key={link.id}
+                                onClick={() => scrollToSection(link.id)}
+                                className="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 
+                                         font-medium transition-colors duration-200"
+                            >
+                                {link.label}
+                            </button>
+                        ))}
+                    </div>
 
-                      
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => setIsMenuToggled(!isMenuToggled)}
+                            className="p-2 rounded-md"
+                        >
+                            <Bars3Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+                        </button>
                     </div>
                 </div>
-            ) : !isMenuToggled &&
-            <div>
-                <button className="fixed top-4 right-3 p-5 z-40 bg-white"
-                    style={{ border: "none", background: "transparent" }}
-                    onClick={() => setIsMenuToggled(!isMenuToggled)}
-                >
-                    <Bars3Icon height="2.5rem" width="2.5rem" color={`${isDarkMode ? "white" : "black"}`}/>
-                </button>
             </div>
-            }
 
-            {!isAboveMediumScreens && isMenuToggled && (
-                <div className="fixed flex flex-col h-full top-4 right-2 z-10 w-[75%] gap-6 bg-white items-end p-6 dark:bg-[#2C2C2C] dark:text-[#cecece]">
-
-                    <button className=""
-                        style={{ border: "none", background: "transparent" }}
-                        onClick={() => setIsMenuToggled(!isMenuToggled)}
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isMenuToggled && (
+                    <motion.div
+                        initial={{ opacity: 0, x: '100%' }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: '100%' }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-900 shadow-xl"
                     >
-                        <XMarkIcon height="2.5rem" width="2.5rem" color={`${isDarkMode ? "white" : "black"}`} />
-                    </button>
-
-                    <div className="flex flex-col h-full gap-[25%] items-end p-8 ">
-                        <button className="text-lg font-semibold" onClick={() => scrollToSection('home')}>Home</button>
-                        <button className="text-lg font-semibold" onClick={() => scrollToSection('about-me')}>About Me</button>
-                        <button className="text-lg font-semibold" onClick={() => scrollToSection('projects')}>Projects</button>
-                        <button className="text-lg font-semibold" onClick={() => scrollToSection('contact-me')}>Contact Me</button>
-                    </div>
-
-                </div>
-            )}
-        </div>
+                        <div className="p-6">
+                            <div className="flex justify-end">
+                                <button
+                                    onClick={() => setIsMenuToggled(false)}
+                                    className="p-2 rounded-md"
+                                >
+                                    <XMarkIcon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+                                </button>
+                            </div>
+                            <div className="mt-6 flex flex-col space-y-8">
+                                {navLinks.map((link) => (
+                                    <button
+                                        key={link.id}
+                                        onClick={() => scrollToSection(link.id)}
+                                        className="text-gray-800 dark:text-gray-200 text-lg font-medium"
+                                    >
+                                        {link.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </nav>
     );
 }

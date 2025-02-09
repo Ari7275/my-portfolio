@@ -41,19 +41,20 @@ export default function ContactMe() {
 
     return (
         <div className="pb-36 lg:flex flex-col gap-4 p-5 items-center justify-center">
-            <p className="text-lg  lg:text-3xl font-bold p-3 dark:text-[#dbd7d7]">Send me an email if you like what you see!</p>
+            <p className="text-lg lg:text-3xl font-bold p-3 dark:text-[#dbd7d7]">
+                Interested in a painting? Get in touch!
+            </p>
 
             {/* FORM */}
             <form
                 className="contactMe-form"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                {/* NAME  border-[#a3a2a7] shadow-[0_0_8px_0_#f7f6fa] transform scale-105*/}
+                {/* NAME */}
                 <input
-                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f] dark:focus:border-[#a3a2a7] dark:focus:shadow-[0_0_8px_0_#f7f6fa] dark:focus:transform scale-105"
+                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f]"
                     type="text"
-                    placeholder="Name"
-                    autoComplete="name"
+                    placeholder="Your Name"
                     {...register("name", {
                         required: true,
                         maxLength: 100,
@@ -69,10 +70,9 @@ export default function ContactMe() {
 
                 {/* EMAIL */}
                 <input
-                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f] dark:focus:border-[#a3a2a7] dark:focus:shadow-[0_0_8px_0_#f7f6fa] dark:focus:transform scale-105"
+                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f]"
                     type="email"
-                    placeholder="Email"
-                    autoComplete="email"
+                    placeholder="Your Email"
                     {...register("email", {
                         required: true,
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -86,14 +86,20 @@ export default function ContactMe() {
                     </p>
                 )}
 
+                {/* PAINTING REFERENCE */}
+                <input
+                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f]"
+                    type="text"
+                    placeholder="Painting Name (if inquiring about specific piece)"
+                    {...register("paintingReference")}
+                    name="paintingReference"
+                />
+
                 {/* MESSAGE */}
                 <textarea
-                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f] dark:focus:border-[#a3a2a7] dark:focus:shadow-[0_0_8px_0_#f7f6fa] dark:focus:transform scale-105"
+                    className="border-dodgerblue focus:shadow-[0_0_8px_0_dodgerblue] focus:transform-scale-105 dark:bg-[#928f8f]"
                     rows={4}
-                    cols={50}
-                    itemType="text"
-                    placeholder="Message"
-                    autoComplete="off"
+                    placeholder="Your Message"
                     {...register("message", {
                         required: true,
                         maxLength: 2000,
@@ -108,7 +114,7 @@ export default function ContactMe() {
                 )}
 
                 {/* BUTTON */}
-                <button type="submit" disabled={!isFormValid} className={!isFormValid ? "disabled" : ""}>SUBMIT</button>
+                <button type="submit" disabled={!isFormValid}>SEND INQUIRY</button>
             </form>
         </div>
     );

@@ -1,226 +1,109 @@
 "use client";
-
-import c_sharp from "../../public/icons/c_sharp.png";
-import c_plus from "../../public/icons/c_plus.png";
-import html from "../../public/icons/html.png";
-import javascript from "../../public/icons/javascript.png";
-import arrow_up from "../../public/icons/arrow_up.png";
-import typescript from "../../public/icons/typescript.png";
-import java_icon from "../../public/icons/java_icon.png";
-import git from "../../public/icons/git.png";
-import sql from "../../public/icons/sql.png";
-import tailwind from "../../public/icons/tailwind-css.png";
-import react from "../../public/icons/react.png";
-import python from "../../public/icons/python.png";
-import nodejs from "../../public/icons/nodejs.png";
-import css from "../../public/icons/css3.png";
-import Image, { StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import { motion } from "framer-motion";
 import ContactMe from "./ContactMe";
-import Projects from "./projects/Projects";
-import { SelectedPage } from "../shared/types";
-import useMediaQuery from "../hooks/useMediaQuery";
-import { ArrowUpIcon } from "@heroicons/react/16/solid";
-import { set } from "react-hook-form";
+import Products from "./products/Products";
+import AboutArtist from "./AboutArtist";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 export default function Body() {
-  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
-  const [isAtEndOfScreen, setIsAtEndOfScreen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
+  // Initialize dark mode based on system preference
   useEffect(() => {
-    const handleScroll = () => {
-      const isAtEnd =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight;
-      setIsAtEndOfScreen(isAtEnd);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    }
   }, []);
 
-  const icons: Array<{ src: StaticImageData; name: string }> = [
-    { src: nodejs, name: "Node.js" },
-    { src: react, name: "React" },
-    { src: c_sharp, name: "C#" },
-    { src: python, name: "Python" },
-    { src: javascript, name: "JavaScript" },
-    { src: typescript, name: "TypeScript" },
-    { src: tailwind, name: "Tailwind CSS" },
-    { src: css, name: "CSS" },
-    { src: html, name: "HTML" },
-    { src: git, name: "Git" },
-    { src: sql, name: "SQL" },
-    { src: java_icon, name: "Java" },
-  ];
-
-  const entries = useIntersectionObserver({ threshold: 0.1 });
-
-  useEffect(() => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("fade-in-left");
-      } else {
-        entry.target.classList.remove("fade-in-left");
-      }
-    });
-  }, [entries]);
-
-  function scrollToSection(sectionId: string) {
-    const section = document.getElementById(sectionId);
-    const offset = 100; // Adjust this value to set the desired offset from the top
-    if (section) {
-      const elementPosition =
-        section.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-    if (sectionId === "contact-me") {
-      setIsAtEndOfScreen(true);
-    }
-  }
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark');
+  };
 
   return (
-    <div>
-      <div
-        className={`w-full grow flex flex-col gap-56`}
+    <div className="relative">
+      {/* Dark Mode Toggle */}
+      <button
+        onClick={toggleDarkMode}
+        className="fixed right-6 top-24 z-50 p-2 rounded-full bg-accent/10 hover:bg-accent/20 transition-all duration-300"
+        aria-label="Toggle dark mode"
       >
-        {/* Home */}
-        <section id="home" className="pt-40">
-          <div  className="home">
-            <div className={`flex flex-col gap-6 text-3xl justify-center`}>
-              <h1 className="text-5xl font-bold dark:text-[#6b6868]">
-                Hi! {"I'm "}
-                <span className="text-[#453bcd] font-bold tracking-widest dark:text-[#e7dede]">
-                  Ari Vainer
-                </span>
-              </h1>
+        {isDarkMode ? (
+          <SunIcon className="h-6 w-6 text-accent" />
+        ) : (
+          <MoonIcon className="h-6 w-6 text-accent" />
+        )}
+      </button>
 
-              <p className="text-2xl md:text-7xl text-wrap font-bold dark:text-[#a39f9f]">
-                Full-Stack Developer
-              </p>
-
-              <div className="text-wrap text-lg dark:text-[#c7c1c1]">
-                <p>A passionate Full-Stack Developer,</p>
-                <p>
-                  love to create and to learn new things, Based in Israel, Tel
-                  Aviv 📌
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <br />
-          <br />
-
-          <div
-            className={`flex justify-center ${
-              isAboveMediumScreens ? "pb-64 pt-16" : "pb-32 pt-8"
-            }`}
+      <main className="min-h-screen">
+        {/* Hero Section */}
+        <section id="home" className="relative min-h-screen flex items-center justify-center px-4 py-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent" />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative text-center max-w-4xl mx-auto"
           >
-            <button
-              onClick={() => scrollToSection("contact-me")}
-              className="contact-me-btn text-lg dark:text-[#928f8f] dark:border-[#bbbaba]"
-            >
-              CONTACT ME
-            </button>
-          </div>
-        </section>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6">
+              Welcome to the Gallery of
+              <span className="text-accent block mt-2">Artist Name</span>
+            </h1>
 
-        {/* About Me */}
-        <section
-          id="about-me"
-          className="fade-in-section w-full grow opacity-0 transform translate-x-[-50%] transition-all  duration-1500"
-        >
-          <p className="text-2xl font-bold dark:text-[#dbd7d7]">About me</p>
-          <br />
-          <p className="flex leading-6 mx-auto p-3 dark:text-[#dfdbdb]">
-            Hello! I am a web development programmer and an Industrial &
-            Management engineer. With 1 year of experience in the field, I am
-            proficient in web development.
-            {"I'm "} committed to delivering high-quality solutions and
-            constantly staying updated with the latest industry trends. When{" "}
-            {"I'm "} not coding, I enjoy playing the guitar, surfing, and
-            spending time with my family and friends. Additionally, I am
-            passionate about learning new technologies and improving my skills
-            to stay ahead in the ever-evolving tech landscape. I believe in the
-            power of collaboration and thrive in environments where I can work
-            with like-minded individuals to create innovative solutions.
-          </p>
-        </section>
-
-        <br />
-
-        {/* Skills Stack */}
-        <section id="skill-stack" className="skill-stack fade-in-section">
-          <span className="flex flex-col gap-8">
-            <p className="text-2xl font-bold ml-2 dark:text-[#dbd7d7]">
-              Skills stack
+            <p className="text-lg md:text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+              Discover a collection of original oil paintings that capture moments of beauty 
+              and emotion through traditional techniques and contemporary vision.
             </p>
 
-            <div className="flex flex-wrap lg:flex-row gap-4 justify-center ">
-              {icons.map((icon) => (
-                <div
-                  key={icon.name}
-                  onMouseEnter={() => setHoveredIcon(icon.name)}
-                  onMouseLeave={() => setHoveredIcon(null)}
-                  className="relative flex flex-col p-3 items-center"
-                >
-                  <Image
-                    alt={icon.name}
-                    src={icon.src}
-                    className="h-16 w-16 p-1 "
-                  />
-                  {hoveredIcon === icon.name && (
-                    <div className="absolute z-10 top-full mt-2 p-1 bg-gray-700 text-white rounded">
-                      {icon.name}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </span>
+            <button
+              onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-3 bg-accent text-secondary hover:bg-accent/90 
+                       transition-all duration-300 uppercase tracking-wider text-sm"
+            >
+              Explore Gallery
+            </button>
+          </motion.div>
         </section>
 
-        <br />
-        <br />
-        <br />
-        <br />
-
-        {/* Projects */}
-        <section
-          id="projects"
-          className="fade-in-section transform translate-x-[-50%] transition-all duration-1500 lg:pl-3"
-        >
-          <p className="text-2xl font-bold dark:text-[#dbd7d7]">MY PROJECTS</p>
-          <Projects />
+        {/* Gallery Section */}
+        <section id="gallery" className="fade-in-section">
+          <Products />
         </section>
 
-        <br />
-        <br />
-        <br />
+        {/* About Artist Section */}
+        <section id="about" className="fade-in-section bg-accent/5">
+          <AboutArtist />
+        </section>
 
-        {/* Contact Info */}
-        <section
-          id="contact-me"
-          className="fade-in-section pb-16 opacity-0 transform translate-x-[-50%] transition-all duration-1500"
-        >
-          {/* Your Contact Info Content */}
+        {/* Contact Section */}
+        <section id="contact" className="fade-in-section">
           <ContactMe />
         </section>
-      </div>
+      </main>
 
+      {/* Scroll to Top Button */}
       <button
-        className="absolute left-8 bottom-8"
-        onClick={() => scrollToSection("home")}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed right-6 bottom-6 z-50 p-3 rounded-full bg-accent text-secondary 
+                 hover:bg-accent/90 transition-all duration-300 shadow-lg"
+        aria-label="Scroll to top"
       >
-        <Image src={arrow_up} width={25} height={25} alt={""} />
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
       </button>
     </div>
   );
