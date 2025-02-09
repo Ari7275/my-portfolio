@@ -18,8 +18,8 @@ const config: Config = {
       },
       colors: {
         accent: {
-          DEFAULT: 'var(--accent)',
-          light: 'var(--accent-light)',
+          DEFAULT: '#9d8f68',
+          light: '#b5a88f',
         },
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
@@ -54,6 +54,18 @@ const config: Config = {
       },
       height: {
         'screen-section': '100vh',
+      },
+      backdropFilter: {
+        'none': 'none',
+        'blur': 'blur(8px)',
+      },
+      boxShadow: {
+        'inner-light': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+        'inner-dark': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.06)',
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
       },
     },
   },

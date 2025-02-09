@@ -21,11 +21,12 @@ export default function AboutArtist() {
                 <div className="md:w-1/3">
                     {/* Add artist photo */}
                     <Image
-                        src="/path-to-artist-photo.jpg"
-                        alt="Artist Name"
+                        src="/images/artist-photo.jpg"
+                        alt="Yoel Vainer"
                         width={300}
                         height={400}
-                        className="rounded-lg"
+                        className="rounded-lg shadow-lg object-cover"
+                        priority
                     />
                 </div>
                 

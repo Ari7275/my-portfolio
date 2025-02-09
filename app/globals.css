@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --primary: #1a1a1a;
-  --secondary: #f4f4f4;
-  --accent: #9d8f68;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --accent-light: #b5a88f;
+  --primary: 26, 26, 26;    /* #1a1a1a in RGB */
+  --secondary: 244, 244, 244;  /* #f4f4f4 in RGB */
+  --accent: 157, 143, 104;     /* #9d8f68 in RGB */
+  --text-primary: 26, 26, 26;
+  --text-secondary: 74, 74, 74;
+  --accent-light: 181, 168, 143;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
 }
 
 .dark {
-  --primary: #f4f4f4;
-  --secondary: #1a1a1a;
-  --accent: #c4b795;
-  --text-primary: #f4f4f4;
-  --text-secondary: #d4d4d4;
-  --accent-light: #d8ccb5;
+  --primary: 244, 244, 244;
+  --secondary: 26, 26, 26;
+  --accent: 196, 183, 149;
+  --text-primary: 244, 244, 244;
+  --text-secondary: 212, 212, 212;
+  --accent-light: 216, 204, 181;
 }
 
 body {
@@ -71,7 +71,8 @@ body {
 }
 
 .art-card-details {
-  @apply mt-4 space-y-2 text-sm border-t border-accent/20 pt-4;
+  @apply mt-4 space-y-2 text-sm border-t pt-4;
+  border-color: rgb(var(--accent) / 0.2);
 }
 
 .art-card-price {
@@ -98,39 +99,62 @@ body {
 /* Navigation Styles */
 .nav-container {
   @apply fixed top-0 w-full z-50 transition-all duration-300;
-  background: var(--secondary);
+  background-color: rgb(var(--secondary) / 0.95);
 }
 
 .nav-scrolled {
-  @apply shadow-md;
-  background: var(--secondary/90);
-  backdrop-filter: blur(8px);
+  @apply shadow-lg backdrop-blur-sm;
+  background-color: rgb(var(--secondary) / 0.95);
 }
 
-.nav-link {
-  @apply relative px-4 py-2 text-sm uppercase tracking-wider transition-colors duration-200;
-  color: var(--text-primary);
+/* Mobile Header Styles */
+@media (max-width: 768px) {
+  .nav-container {
+    @apply px-4;
+  }
+  
+  .mobile-menu {
+    @apply fixed top-20 left-0 right-0 bg-white dark:bg-gray-900 
+           shadow-lg border-t border-gray-200 dark:border-gray-700;
+  }
+  
+  .mobile-menu-link {
+    @apply block w-full text-left px-4 py-3 text-base font-medium
+           border-b border-gray-200 dark:border-gray-700
+           transition-colors duration-200;
+  }
 }
 
-.nav-link::after {
-  content: '';
-  @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
-  background: var(--accent);
-}
+/* Desktop Header Styles */
+@media (min-width: 769px) {
+  .nav-link {
+    @apply relative px-4 py-2 text-sm font-medium tracking-wider
+           transition-all duration-300;
+  }
 
-.nav-link:hover::after {
-  @apply w-full;
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent
+           transition-all duration-300 ease-out;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
 }
 
 /* Mobile Menu Styles */
 .mobile-menu {
-  @apply fixed inset-y-0 right-0 w-full max-w-sm p-6 shadow-xl;
-  background: var(--secondary);
+  @apply fixed inset-y-0 right-0 w-full max-w-sm p-6 shadow-xl
+         backdrop-blur-lg border-l mt-20;
+  background-color: rgb(var(--secondary) / 0.95);
+  border-color: rgb(var(--accent) / 0.1);
 }
 
 .mobile-menu-link {
-  @apply block py-3 text-lg font-medium transition-colors duration-200 border-b border-accent/20;
-  color: var(--text-primary);
+  @apply block py-3 text-lg font-medium transition-colors
+         duration-200 border-b hover:text-accent;
+  border-color: rgb(var(--accent) / 0.2);
 }
 
 /* Animations */
@@ -205,25 +229,54 @@ body {
   @apply prose prose-lg dark:prose-invert max-w-none;
 }
 
-/* Contact form styles */
-.contact-section {
-  @apply min-h-screen flex flex-col justify-center items-center px-4 py-16;
+/* Contact section styles */
+#contactme {
+  @apply max-w-4xl mx-auto py-24 px-4;
 }
 
-.contact-form {
-  @apply max-w-xl w-full space-y-4;
+#contactme h2 {
+  @apply text-3xl md:text-4xl font-serif mb-8 text-center;
 }
 
-.form-input {
-  @apply w-full p-3 rounded-lg border-2 bg-transparent
-    dark:border-gray-700 dark:text-gray-100
-    focus:ring-2 focus:ring-blue-500 transition-all duration-300;
+.contactMe-form {
+  @apply max-w-2xl mx-auto space-y-6 bg-white/5 dark:bg-black/5 
+         backdrop-blur-sm rounded-lg p-8 shadow-lg;
 }
 
+.contactMe-form input,
+.contactMe-form textarea {
+  @apply w-full px-4 py-3 rounded-lg border-2 
+         bg-white/50 dark:bg-black/50
+         border-accent/20 dark:border-accent/10
+         focus:ring-2 focus:ring-accent focus:border-transparent
+         dark:focus:ring-accent-light
+         transition-all duration-300;
+}
+
+.contactMe-form input:hover,
+.contactMe-form textarea:hover {
+  @apply border-accent/40 dark:border-accent/30;
+}
+
+.contactMe-form label {
+  @apply block text-sm font-medium text-text-secondary mb-1;
+}
+
+.contactMe-form button {
+  @apply w-full py-3 px-6 bg-accent text-white rounded-lg
+         font-medium tracking-wide uppercase
+         hover:bg-accent-light transition-all duration-300
+         shadow-md hover:shadow-lg transform hover:-translate-y-0.5
+         disabled:bg-gray-400 disabled:cursor-not-allowed
+         disabled:transform-none disabled:shadow-none;
+}
+
+/* Remove any conflicting contact form styles */
+.contact-section,
+.contact-form,
+.form-input,
 .submit-button {
-  @apply w-full bg-blue-600 text-white py-3 rounded-lg
-    hover:bg-blue-700 transition-all duration-300
-    disabled:bg-gray-400 disabled:cursor-not-allowed;
+  @apply hidden;
 }
 
 /* Mobile responsive adjustments */
@@ -316,86 +369,6 @@ body {
 
 .contact-me-btn{
   @apply border-[3px] rounded-lg  font-extrabold border-black w-96 p-3 transform transition-transform duration-300 hover:scale-125 ;
-}
-
-/* ---------- CONTACT ME --------- */
-
-#contactme {
-  margin-inline: auto;
-  min-height: 100dvh;
-  width: 60%;
-  padding-block: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#contactme h1 {
-  padding-bottom: 2rem;
-}
-
-.contactMe-form {
-  
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  width: 100%;
-}
-
-.contactMe-form input,
-.contactMe-form textarea {
-  width: 100%;
-  max-width: 500px;
-  /* Set a max-width for inputs and textarea */
-  outline: none;
-  border: 2px solid #aaa;
-  border-radius: 4px;
-  margin: 8px 0;
-  padding: 8px;
-  transition: 0.3s;
-}
-
-
-/* .contactMe-form input:focus,
-.contactMe-form textarea:focus {
-  @apply border-[#a3a2a7] shadow-[0_0_8px_0_#f7f6fa] transform scale-105;
-} */
-
-/* .contactMe-form input:focus,
-.contactMe-form textarea:focus {
-  @apply border-dodgerblue shadow-[0_0_8px_0_dodgerblue] transform scale-105;
-} */
-
-.contactMe-form button {
-  font-weight: 700;
-  background: #453bcd;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0 0 0 0.1);
-  border: none;
-  outline: none;
-  -webkit-transform-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow, transform;
-  transition-property: box-shadow, transform;
-}
-
-.contactMe-form button:hover,
-.contactMe-form button:focus,
-.contactMe-form button:active {
-  box-shadow: 0 0 20px rgba(0 0 0 0.5);
-  transform: scale(1.1);
-}
-
-.contactMe-form button:disabled,
-.contactMe-form button.disabled {
-  background-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-  border: 1px solid #cccccc;
 }
 
 /* ----------- PROJECTS ------------- */
