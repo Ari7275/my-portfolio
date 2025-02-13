@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-
+import yoel from "../assets/yoelVainer.png";
 export default function AboutArtist() {
     return (
         <motion.section
@@ -21,7 +21,7 @@ export default function AboutArtist() {
                 <div className="md:w-1/3">
                     {/* Add artist photo */}
                     <Image
-                        src="/images/artist-photo.jpg"
+                        src={yoel}
                         alt="Yoel Vainer"
                         width={300}
                         height={400}

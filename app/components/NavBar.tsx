@@ -52,40 +52,26 @@ export default function NavBar() {
     ];
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-            isScrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md' : 'bg-transparent'
-        }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex h-20 items-center justify-between">
-                    {/* Logo/Brand - Add if needed */}
-                    <div className="flex-shrink-0">
-                        {/* Add your logo here if needed */}
-                    </div>
+        <nav>
+            {/* Desktop Navigation */}
+            <div>
+                {navLinks.map((link) => (
+                    <button
+                        key={link.id}
+                        onClick={() => scrollToSection(link.id)}
+                    >
+                        {link.label}
+                    </button>
+                ))}
+            </div>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center space-x-8">
-                        {navLinks.map((link) => (
-                            <button
-                                key={link.id}
-                                onClick={() => scrollToSection(link.id)}
-                                className="text-gray-800 dark:text-gray-200 hover:text-accent dark:hover:text-accent
-                                         text-sm font-medium tracking-wider transition-all duration-300"
-                            >
-                                {link.label}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <div className="md:hidden">
-                        <button
-                            onClick={() => setIsMenuToggled(!isMenuToggled)}
-                            className="p-2 rounded-md text-gray-800 dark:text-gray-200 hover:text-accent"
-                        >
-                            <Bars3Icon className="h-6 w-6" />
-                        </button>
-                    </div>
-                </div>
+            {/* Mobile Menu Button */}
+            <div>
+                <button
+                    onClick={() => setIsMenuToggled(!isMenuToggled)}
+                >
+                    <Bars3Icon className="h-6 w-6" />
+                </button>
             </div>
 
             {/* Mobile Menu */}
@@ -96,9 +82,8 @@ export default function NavBar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-20 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg md:hidden"
                     >
-                        <div className="px-4 pt-2 pb-3 space-y-1">
+                        <div>
                             {navLinks.map((link) => (
                                 <button
                                     key={link.id}
@@ -106,9 +91,6 @@ export default function NavBar() {
                                         scrollToSection(link.id);
                                         setIsMenuToggled(false);
                                     }}
-                                    className="block w-full text-left px-3 py-2 text-base font-medium 
-                                             text-gray-800 dark:text-gray-200 hover:text-accent 
-                                             dark:hover:text-accent transition-colors duration-200"
                                 >
                                     {link.label}
                                 </button>
