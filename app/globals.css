@@ -366,7 +366,7 @@ body {
 }
 
 .contactMe-form button {
-  @apply bg-[#453bcd] text-white px-8 py-3 rounded-lg transition-all duration-300 hover:bg-[#362e9d];
+  @apply bg-[#808080] text-white px-8 py-3 rounded-lg transition-all duration-300 hover:bg-[#666666];
 }
 
 /* Mobile responsive adjustments */
@@ -384,7 +384,7 @@ body {
 /* Tailwind CSS */
 
 /* Mobile styles */
-@media (max-width: 600px ) {
+@media (max-width: 600px) {
   :root {
     --background: 0 0% 100%;
   }
@@ -441,7 +441,7 @@ body {
   }
 
   .contactMe-form button {
-    @apply font-bold bg-[#453bcd] py-2 px-4 text-white rounded-md shadow-md border-none outline-none transition-transform duration-300;
+    @apply font-bold bg-gray-500 py-2 px-4 text-white rounded-md shadow-md border-none outline-none transition-transform duration-300;
   }
 
   .contactMe-form button:hover,
@@ -503,7 +503,23 @@ body {
   @apply  border-[3px] w-32 text-[10px] rounded-lg font-extrabold border-black transform transition-transform duration-300 hover:scale-125  dark:text-[#928f8f] dark:border-[#bbbaba] ;
 }
 
+  nav {
+    @apply px-4;
+  }
+  
+  .mobile-menu-button {
+    @apply p-2 rounded-lg hover:bg-opacity-10 hover:bg-accent transition-colors duration-300;
+  }
+  
+  .mobile-menu {
+    @apply fixed top-16 left-0 right-0 bg-secondary bg-opacity-95 backdrop-blur-sm
+           border-t border-accent border-opacity-10 shadow-lg;
+  }
 
+  /* Add these new styles for mobile text */
+  .mobile-menu button {
+    @apply text-lg font-medium;
+  }
 }
 
 /* Add these new utility classes */
@@ -514,4 +530,47 @@ body {
 .section-divider {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--accent), transparent);
+}
+
+/* NavBar Styles */
+.nav-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Mobile NavBar animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Update existing mobile styles section with these NavBar-specific styles */
+@media (max-width: 600px) {
+  nav {
+    @apply px-4;
+  }
+  
+  .mobile-menu-button {
+    @apply p-2 rounded-lg hover:bg-opacity-10 hover:bg-accent transition-colors duration-300;
+  }
+  
+  .mobile-menu {
+    @apply fixed top-16 left-0 right-0 bg-secondary bg-opacity-95 backdrop-blur-sm
+           border-t border-accent border-opacity-10 shadow-lg;
+  }
+
+  /* Add these new styles for mobile text */
+  .mobile-menu button {
+    @apply text-lg font-medium;
+  }
 }

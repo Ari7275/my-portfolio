@@ -1,5 +1,7 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { StaticImageData } from "next/image";
+import painting1 from "../assets/paintings/paintingTodoPhoto.png"
+
 export interface Painting {
   image?: StaticImageData;
   title: string;
@@ -17,6 +19,7 @@ export const paintings: Painting[] = [
     dimensions: "24\" x 36\"",
     technique: "Oil on Canvas",
     price: 1200,
+    image: painting1,
     available: true,
   },
   {
@@ -25,6 +28,7 @@ export const paintings: Painting[] = [
     dimensions: "30\" x 40\"",
     technique: "Oil on Canvas",
     price: 1500,
+    image: painting1,
     available: true,
   },
   // Add more paintings here

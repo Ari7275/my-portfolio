@@ -9,16 +9,9 @@ import { useState } from "react";
 import useMediaQuery from "./hooks/useMediaQuery";
 
 export default function Home() {
-
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
-
-
-
-
   return (
-
     <div className="h-full w-full dark:bg-[#2C2C2C]">
-      <main className={`relative h-full w-full p-6`}>
+      <main className={`h-full w-full`}>
         <NavBar></NavBar>
         <SideButtons/>
         <Body></Body>

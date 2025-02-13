@@ -27,7 +27,7 @@ export default function Body() {
       {/* Dark Mode Toggle */}
       <button
         onClick={toggleDarkMode}
-        className="fixed left-24 bottom-6 z-50 p-3 rounded-full bg-accent/10 hover:bg-accent/20 transition-all duration-300"
+        className="fixed left-20 bottom-6 z-50 p-3 rounded-full bg-accent/10 hover:bg-accent/20 transition-all duration-300"
         aria-label="Toggle dark mode"
       >
         {isDarkMode ? (
@@ -87,8 +87,8 @@ export default function Body() {
       {/* Scroll to Top Button */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed left-6 bottom-6 z-50 p-3 rounded-full bg-accent text-secondary 
-                 hover:bg-accent/90 transition-all duration-300 shadow-lg"
+        className="fixed left-6 bottom-6 z-50 p-3 rounded-full bg-accent/10 text-secondary 
+                 hover:bg-accent/20 transition-all duration-300 shadow-lg"
         aria-label="Scroll to top"
       >
         <svg
